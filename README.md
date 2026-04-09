@@ -29,8 +29,10 @@ tickets, and payments across multiple days of Comic-Con India.
 
 ## Files
 
-- `comiccon_parking.eraser` — source diagram file (Eraser.io) [link]()
-- `comiccon_parking.png` — exported image of the diagram [link]()
+- `comiccon_parking.eraser` — source diagram file (Eraser.io) [link](https://app.eraser.io/workspace/2zzPB2C7mFeYkNRx4Ldg)
+- `comiccon_parking.png` — exported image of the diagram [link](https://github.com/xpvishal1d/Comic-Con-Parking-System-ERD/blob/main/diagram-export-09-04-2026-19_12_57.png)
+
+- ![Photo ERD](https://github.com/xpvishal1d/Comic-Con-Parking-System-ERD/blob/main/diagram-export-09-04-2026-19_12_57.png).
 
 ## Tools Used
 
