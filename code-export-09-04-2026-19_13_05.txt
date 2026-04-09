@@ -1,0 +1,85 @@
+// ── Comic-Con India Parking System ──
+
+VehicleCategory [icon: tag, color: purple] {
+  category_id INT [pk]
+  name VARCHAR(50)
+  description VARCHAR(255)
+}
+
+Vehicle [icon: truck, color: blue] {
+  vehicle_id INT [pk]
+  category_id INT [fk]
+  license_plate VARCHAR(20)
+  owner_name VARCHAR(100)
+  owner_phone VARCHAR(15)
+  is_ev BOOLEAN
+}
+
+AccessCategory [icon: shield, color: orange] {
+  access_id INT [pk]
+  name VARCHAR(50)
+  description VARCHAR(255)
+}
+
+ParkingZone [icon: map, color: green] {
+  zone_id INT [pk]
+  zone_name VARCHAR(50)
+  zone_code VARCHAR(10)
+}
+
+ParkingLevel [icon: layers, color: teal] {
+  level_id INT [pk]
+  zone_id INT [fk]
+  level_number INT
+  total_spots INT
+}
+
+ParkingSpot [icon: map-pin, color: yellow] {
+  spot_id INT [pk]
+  level_id INT [fk]
+  compatible_category_id INT [fk]
+  access_id INT [fk]
+  spot_number VARCHAR(10)
+  is_reserved BOOLEAN
+  has_ev_charger BOOLEAN
+  status VARCHAR(20)
+}
+
+ParkingSession [icon: clock, color: red] {
+  session_id INT [pk]
+  vehicle_id INT [fk]
+  spot_id INT [fk]
+  entry_time DATETIME
+  exit_time DATETIME
+  status VARCHAR(20)
+  fee_calculated DECIMAL(10,2)
+}
+
+ParkingTicket [icon: file-text, color: pink] {
+  ticket_id INT [pk]
+  session_id INT [fk]
+  ticket_number VARCHAR(30)
+  issued_at DATETIME
+  rate_per_hour DECIMAL(10,2)
+}
+
+Payment [icon: credit-card, color: gray] {
+  payment_id INT [pk]
+  session_id INT [fk]
+  amount DECIMAL(10,2)
+  method VARCHAR(30)
+  status VARCHAR(20)
+  paid_at DATETIME
+}
+
+// ── Relationships ──
+
+VehicleCategory.category_id < Vehicle.category_id 
+VehicleCategory.category_id < ParkingSpot.compatible_category_id 
+AccessCategory.access_id < ParkingSpot.access_id 
+ParkingZone.zone_id < ParkingLevel.zone_id 
+ParkingLevel.level_id < ParkingSpot.level_id 
+Vehicle.vehicle_id < ParkingSession.vehicle_id 
+ParkingSpot.spot_id < ParkingSession.spot_id 
+ParkingSession.session_id - ParkingTicket.session_id
+ParkingSession.session_id - Payment.session_id
